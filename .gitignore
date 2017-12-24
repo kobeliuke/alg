@@ -1,0 +1,50 @@
+
+# files for the dex VM  
+*.dex  
+  
+# Java class files  
+*.class    
+  
+# generated files  
+bin/  
+gen/
+build/
+.DS_Store  
+   
+
+# Visual Studio
+Debug
+Release
+*.suo
+
+# IntelliJ IDEA
+.idea
+*.iml
+*.ipr
+*.iws
+classes
+gen-external-apklibs
+
+# Eclipse
+.project
+.classpath
+.settings
+.checkstyle
+.cproject
+
+# Gradle
+.gradle
+#build
+buildout
+out
+
+# Maven
+target
+release.properties
+pom.xml.*
+
+# Ant
+ant.properties
+local.properties
+proguard.cfg
+proguard-project.txt
