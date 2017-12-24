@@ -1,67 +1,30 @@
 import SortAlg.Insertion;
-import SortAlg.Selection;
-import SortAlg.Shell;
-import com.sun.tools.javah.Gen;
-import junit.framework.TestCase;
+import SortAlg.Merge;
 import org.junit.Test;
 import util.GenerateUtil;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class SortTest {
 
     @Test
-    public void genRanNumArrTest() {
-        Integer[] arr = GenerateUtil.genRanNumArr(100,1000);
+    public void positionTest() {
+        int l = 100;
+        int r = 300;
 
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + "    ");
+        int m = (l + r) / 2;
 
-            if(((i+1)%10) == 0 ){
-                System.out.print("\n");
-            }
-        }
+        //防止int过大溢出求终点的方法
+        int m2 = l + (r - l) / 2;
+
+        System.out.println(m);
+        System.out.println(m2);
     }
 
     @Test
-    public void genRanStrArrTest(){
-        String[] arr = GenerateUtil.genRanStrArr(100);
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + "    ");
-
-            if(((i+1)%10) == 0 ){
-                System.out.print("\n");
-            }
-        }
-    }
-    @Test
-    public void selectionSortTest() {
-        Integer[] arr = GenerateUtil.genRanNumArr(50,50);
-        Selection.sort(arr);
-
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-    }
-
-    @Test
-    public void insertionSortTest(){
-        Integer[] arr = GenerateUtil.genRanNumArr(50,50);
-        Insertion.sort(arr);
-
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.print("\n");
-
-
-    }
-
-    @Test
-    public void shellSortTest(){
-        Integer[] arr = GenerateUtil.genRanNumArr(11,50);
-        Shell.sort(arr,3);
+    public void mergeSortTest() {
+        Integer[] arr = GenerateUtil.genRanNumArr(11, 50);
+        Merge.sort(arr);
 
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
@@ -70,30 +33,60 @@ public class SortTest {
     }
 
     @Test
-    public void performanceCompareTest(){
-        //Integer[] arr = GenerateUtil.genRanNumArr(100000,10);
-        Integer[] arr = GenerateUtil.genRanNumArr(50000,50000);
-        Integer[] arr2 = Arrays.copyOf(arr,arr.length);
+    public void mergeImproveTest(){
+        Integer[] arr = GenerateUtil.genRanNumArr(11, 50);
+
+        Merge.sortImprove(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.print("\n");
+    }
+
+    @Test
+    public void mergeBtTest(){
+        Integer[] arr = GenerateUtil.genRanNumArr(11, 50);
+
+        Merge.sortBT(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.print("\n");
+    }
+
+    @Test
+    public void performanceCompare() {
+        //Integer[] arr = GenerateUtil.genNearlyOrderArr(50000,200);
+        Integer[] arr = GenerateUtil.genRanNumArr(50000, 50000);
+        Integer[] arr2 = Arrays.copyOf(arr, arr.length);
         Integer[] arr3 = Arrays.copyOf(arr,arr.length);
+        Integer[] arr4 = Arrays.copyOf(arr,arr.length);
+
         long start = System.currentTimeMillis();
-        Selection.sort(arr);
+        Merge.sort(arr);
         long end = System.currentTimeMillis();
-        double duration = (end -start)/1000d;
-        System.out.print("selection: " + duration +"s\n");
+        double duration = (end - start) / 1000d;
+        System.out.print("merge: " + duration + "s\n");
 
         start = System.currentTimeMillis();
-        Insertion.sort(arr2);
+        Merge.sortImprove(arr2);
         end = System.currentTimeMillis();
-        duration = (end - start)/1000d;
+        duration = (end - start) / 1000d;
 
-        System.out.println("insertion: " + duration +"s");
+        System.out.println("merge improve: " + duration + "s");
+
         start = System.currentTimeMillis();
-        Shell.sort(arr3,6);
+        Merge.sortBT(arr3);
         end = System.currentTimeMillis();
-        duration = (end - start)/1000d;
+        duration = (end - start) / 1000d;
 
-        System.out.println("shell: " + duration +"s");
+        System.out.println("merge BT: " + duration + "s");
 
+        start = System.currentTimeMillis();
+        Insertion.sort(arr4);
+        end = System.currentTimeMillis();
+        duration = (end - start) / 1000d;
+
+        System.out.println("insertion: " + duration + "s");
     }
-
 }

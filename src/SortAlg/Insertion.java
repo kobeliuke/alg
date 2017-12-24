@@ -18,4 +18,15 @@ public class Insertion {
             arr[j] = temp;
         }
     }
+
+    public static void sort(Comparable[] arr, int lIndex, int rIndex) {
+        for (int i = lIndex + 1; i <= rIndex; i++) {
+            Comparable temp = arr[i];
+            int j;
+            for (j = i; j > 0 && Utility.less(temp, arr[j - 1]); j--) {
+                arr[j] = arr[j - 1];
+            }
+            arr[j] = temp;
+        }
+    }
 }
