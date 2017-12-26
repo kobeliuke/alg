@@ -10,6 +10,40 @@ public class Quick {
         quickSort(arr, 0, arr.length - 1);
     }
 
+    public static void sort2(Comparable[] arr) {
+        quickSort2(arr, 0, arr.length - 1);
+    }
+
+    public static void quickSort2(Comparable[] arr, int l, int r) {
+        if (r - l <= 14) {
+            Insertion.sort(arr, l, r);
+            return;
+        }
+        int p = partition2(arr, l, r);
+        quickSort2(arr, l, p - 1);
+        quickSort2(arr, p + 1, r);
+    }
+
+    public static int partition2(Comparable[] arr, int l, int r) {
+
+        int pos = new Random().nextInt(r - l + 1) + l;
+        Utility.exchange(arr, l, pos);
+        Comparable v = arr[l];
+        int i = l + 1;
+        int j = r;
+        while (true) {
+            while (Utility.less(arr[i], v) && i <= r) i++;
+            while (Utility.less(v, arr[j]) && j >= l + 1) j--;
+            if (i >= j) break;
+            Utility.exchange(arr, i, j);
+            i++;
+            j--;
+        }
+        Utility.exchange(arr, j, l);
+        return j;
+
+    }
+
     public static void sortImprove(Comparable[] arr) {
         quickSortImprove(arr, 0, arr.length - 1);
     }
@@ -36,8 +70,8 @@ public class Quick {
     //返回p, 使得arr[l...p-1] < arr[p] ; arr[p+1...r] > arr[p]
     private static int partition(Comparable[] arr, int l, int r) {
 
-        int pos = new Random().nextInt(r-l+1) + l;
-        Utility.exchange(arr,l,pos);
+        int pos = new Random().nextInt(r - l + 1) + l;
+        Utility.exchange(arr, l, pos);
         Comparable v = arr[l];
         // arr[l+1...j] < v ; arr[j+1...i) > v
         int j = l;

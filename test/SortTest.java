@@ -34,7 +34,7 @@ public class SortTest {
     }
 
     @Test
-    public void mergeImproveTest(){
+    public void mergeImproveTest() {
         Integer[] arr = GenerateUtil.genRanNumArr(11, 50);
 
         Merge.sortImprove(arr);
@@ -46,7 +46,7 @@ public class SortTest {
 
 
     @Test
-    public void mergeBtTest(){
+    public void mergeBtTest() {
         Integer[] arr = GenerateUtil.genRanNumArr(11, 50);
 
         Merge.sortBT(arr);
@@ -57,7 +57,7 @@ public class SortTest {
     }
 
     @Test
-    public void quickSortTest(){
+    public void quickSortTest() {
         Integer[] arr = GenerateUtil.genRanNumArr(11, 50);
 
         Quick.sort(arr);
@@ -68,8 +68,8 @@ public class SortTest {
     }
 
     @Test
-    public void quickSortImproveTest(){
-        Integer[] arr = GenerateUtil.genRanNumArr(11, 50);
+    public void quickSortImproveTest() {
+        Integer[] arr = GenerateUtil.genRanNumArr(61, 50);
 
         Quick.sortImprove(arr);
         for (int i = 0; i < arr.length; i++) {
@@ -79,11 +79,23 @@ public class SortTest {
     }
 
     @Test
-    public void performanceQuick(){
+    public void quickSort2Test() {
+        Integer[] arr = GenerateUtil.genRanNumArr(77, 77);
+        Quick.sort2(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.print("\n");
+    }
+
+
+    @Test
+    public void performanceQuick() {
         Integer[] arr = GenerateUtil.genRanNumArr(500003, 50);
         //Integer[] arr = GenerateUtil.genNearlyOrderArr(500009,200);
         Integer[] arr2 = Arrays.copyOf(arr, arr.length);
         Integer[] arr3 = Arrays.copyOf(arr, arr.length);
+        Integer[] arr4 = Arrays.copyOf(arr, arr.length);
 
         long start = System.currentTimeMillis();
         Merge.sortImprove(arr);
@@ -104,6 +116,13 @@ public class SortTest {
         duration = (end - start) / 1000d;
 
         System.out.println("quick improve: " + duration + "s");
+
+        start = System.currentTimeMillis();
+        Quick.sort2(arr4);
+        end = System.currentTimeMillis();
+        duration = (end - start) / 1000d;
+
+        System.out.println("quick 2: " + duration + "s");
     }
 
     @Test
@@ -111,8 +130,8 @@ public class SortTest {
         //Integer[] arr = GenerateUtil.genNearlyOrderArr(50000,200);
         Integer[] arr = GenerateUtil.genRanNumArr(50000, 50000);
         Integer[] arr2 = Arrays.copyOf(arr, arr.length);
-        Integer[] arr3 = Arrays.copyOf(arr,arr.length);
-        Integer[] arr4 = Arrays.copyOf(arr,arr.length);
+        Integer[] arr3 = Arrays.copyOf(arr, arr.length);
+        Integer[] arr4 = Arrays.copyOf(arr, arr.length);
 
         long start = System.currentTimeMillis();
         Merge.sort(arr);
