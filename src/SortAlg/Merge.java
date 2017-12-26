@@ -29,7 +29,6 @@ public class Merge {
                 merge(arr, i, i + sz - 1, Math.min(i + sz + sz - 1, len-1));
             }
         }
-
     }
 
     private static void mergeSortImprove(Comparable[] arr, int l, int r) {

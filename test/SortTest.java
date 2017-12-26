@@ -1,5 +1,6 @@
 import SortAlg.Insertion;
 import SortAlg.Merge;
+import SortAlg.Quick;
 import org.junit.Test;
 import util.GenerateUtil;
 
@@ -43,6 +44,7 @@ public class SortTest {
         System.out.print("\n");
     }
 
+
     @Test
     public void mergeBtTest(){
         Integer[] arr = GenerateUtil.genRanNumArr(11, 50);
@@ -52,6 +54,56 @@ public class SortTest {
             System.out.print(arr[i] + " ");
         }
         System.out.print("\n");
+    }
+
+    @Test
+    public void quickSortTest(){
+        Integer[] arr = GenerateUtil.genRanNumArr(11, 50);
+
+        Quick.sort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.print("\n");
+    }
+
+    @Test
+    public void quickSortImproveTest(){
+        Integer[] arr = GenerateUtil.genRanNumArr(11, 50);
+
+        Quick.sortImprove(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.print("\n");
+    }
+
+    @Test
+    public void performanceQuick(){
+        Integer[] arr = GenerateUtil.genRanNumArr(500003, 50);
+        //Integer[] arr = GenerateUtil.genNearlyOrderArr(500009,200);
+        Integer[] arr2 = Arrays.copyOf(arr, arr.length);
+        Integer[] arr3 = Arrays.copyOf(arr, arr.length);
+
+        long start = System.currentTimeMillis();
+        Merge.sortImprove(arr);
+        long end = System.currentTimeMillis();
+        double duration = (end - start) / 1000d;
+        System.out.print("merge: " + duration + "s\n");
+
+        start = System.currentTimeMillis();
+        Quick.sort(arr2);
+        end = System.currentTimeMillis();
+        duration = (end - start) / 1000d;
+
+        System.out.println("quick: " + duration + "s");
+
+        start = System.currentTimeMillis();
+        Quick.sortImprove(arr3);
+        end = System.currentTimeMillis();
+        duration = (end - start) / 1000d;
+
+        System.out.println("quick improve: " + duration + "s");
     }
 
     @Test
