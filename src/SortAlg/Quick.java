@@ -14,7 +14,40 @@ public class Quick {
         quickSort2(arr, 0, arr.length - 1);
     }
 
-    public static void quickSort2(Comparable[] arr, int l, int r) {
+    public static void sort3(Comparable[] arr) {
+        quickSort3Ways(arr, 0, arr.length - 1);
+    }
+
+    private static void quickSort3Ways(Comparable[] arr, int l, int r) {
+        if (r - l <= 14) {
+            Insertion.sort(arr, l, r);
+            return;
+        }
+
+        int pos = new Random().nextInt(r - l + 1) + l;
+        Utility.exchange(arr, l, pos);
+        Comparable v = arr[l];
+        int lt = l;//arr[l+1 ... lt] <v
+        int gt = r + 1; //arr[gt ... r]>v
+        int i = l + 1; //arr[lt+1,i) == v
+        while (i < gt) {
+            if (Utility.less(arr[i], v)) {
+                Utility.exchange(arr, i, lt + 1);
+                lt++;
+                i++;
+            } else if (Utility.less(v, arr[i])) {
+                Utility.exchange(arr, i, gt - 1);
+                gt--;
+            } else {
+                i++;
+            }
+        }
+        Utility.exchange(arr, l, lt);
+        quickSort3Ways(arr, l, lt - 1);
+        quickSort3Ways(arr, gt, r);
+    }
+
+    private static void quickSort2(Comparable[] arr, int l, int r) {
         if (r - l <= 14) {
             Insertion.sort(arr, l, r);
             return;
@@ -24,7 +57,7 @@ public class Quick {
         quickSort2(arr, p + 1, r);
     }
 
-    public static int partition2(Comparable[] arr, int l, int r) {
+    private static int partition2(Comparable[] arr, int l, int r) {
 
         int pos = new Random().nextInt(r - l + 1) + l;
         Utility.exchange(arr, l, pos);

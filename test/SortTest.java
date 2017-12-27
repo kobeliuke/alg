@@ -88,6 +88,43 @@ public class SortTest {
         System.out.print("\n");
     }
 
+    @Test
+    public void quickSort3Test() {
+        Integer[] arr = GenerateUtil.genRanNumArr(77, 77);
+        Quick.sort3(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.print("\n");
+    }
+
+    @Test
+    public void performanceQuick2() {
+        Integer[] arr = GenerateUtil.genRanNumArr(100000, 1003200);
+        //Integer[] arr = GenerateUtil.genNearlyOrderArr(50000,200);
+        Integer[] arr2 = Arrays.copyOf(arr, arr.length);
+        Integer[] arr3 = Arrays.copyOf(arr, arr.length);
+
+        long start = System.currentTimeMillis();
+        Merge.sortImprove(arr);
+        long end = System.currentTimeMillis();
+        double duration = (end - start) / 1000d;
+        System.out.print("merge: " + duration + "s\n");
+
+        start = System.currentTimeMillis();
+        Quick.sort2(arr2);
+        end = System.currentTimeMillis();
+        duration = (end - start) / 1000d;
+
+        System.out.println("quick2: " + duration + "s");
+
+        start = System.currentTimeMillis();
+        Quick.sort3(arr3);
+        end = System.currentTimeMillis();
+        duration = (end - start) / 1000d;
+
+        System.out.println("quick3: " + duration + "s");
+    }
 
     @Test
     public void performanceQuick() {
