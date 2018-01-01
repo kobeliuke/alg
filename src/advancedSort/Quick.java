@@ -1,5 +1,6 @@
-package SortAlg;
+package advancedSort;
 
+import simpleSort.Insertion;
 import util.Utility;
 
 import java.util.Random;

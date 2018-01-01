@@ -1,5 +1,6 @@
-package SortAlg;
+package advancedSort;
 
+import simpleSort.Insertion;
 import util.Utility;
 
 public class Merge {

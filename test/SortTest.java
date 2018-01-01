@@ -1,6 +1,6 @@
-import SortAlg.Insertion;
-import SortAlg.Merge;
-import SortAlg.Quick;
+import simpleSort.Insertion;
+import advancedSort.Merge;
+import advancedSort.Quick;
 import org.junit.Test;
 import util.GenerateUtil;
 

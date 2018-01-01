@@ -1,13 +1,10 @@
-import SortAlg.Insertion;
-import SortAlg.Selection;
-import SortAlg.Shell;
-import com.sun.tools.javah.Gen;
-import junit.framework.TestCase;
+import simpleSort.Insertion;
+import simpleSort.Selection;
+import simpleSort.Shell;
 import org.junit.Test;
 import util.GenerateUtil;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class SimpleSortTest {
 
