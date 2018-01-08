@@ -13,6 +13,16 @@ public class MaxHeap {
         count = 0;
     }
 
+    public MaxHeap(Comparable[] arr) {
+        int len = arr.length;
+        count = len;
+        data = new Comparable[len + 1];
+        System.arraycopy(arr, 0, data, 1, len);
+        for (int i = len / 2; i >= 1; i--) {
+            shiftDown(i);
+        }
+    }
+
     public int size() {
         return count;
     }

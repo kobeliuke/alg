@@ -45,4 +45,23 @@ public class HeapTest {
         System.out.println();
         heap.showHeap();
     }
+
+    @Test
+    public void heapSort() {
+        Integer arr[] = GenerateUtil.genRanNumArr(15, 100);
+        MaxHeap heap = new MaxHeap(arr);
+
+        heap.showHeap();
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            arr[i] = (Integer) heap.extractMax();
+        }
+        System.out.println();
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+
+
+    }
 }
